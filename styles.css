@@ -1,0 +1,96 @@
+/* 	NOTE: This is based off 'styles.css' from the "HobbySite" project */
+
+/* Define CSS variables */
+:root {
+	--lighter: #eee ;
+	--light: #ddd ;
+	--mid: #888 ;
+	--dark: #333 ;
+	--darker: #222 ;
+
+	--body-bg: linear-gradient(0deg, rgba(140, 0, 80, 0.70), rgba(0, 0, 180, 0.40) 50%, rgba(0, 0, 64, 0.80)), 
+		url(images/photo-1667124060133-c1074b0124be.avif);
+	--header-background: linear-gradient(180deg, rgb(32, 32, 220), rgb(0, 0, 160) 90%, rgb(0, 0, 140)) ;
+	--header-color: var(--lighter) ;
+	--navbar-background: linear-gradient(180deg, rgb(250, 250, 250), rgb(220, 220, 220) 80%, rgb(160, 160, 160)) ;
+	--navbar-color: black ;
+	--panel-title-background: white;
+	--panel-title-color: var(--dark) ;
+	--panel-contents-background: #fffb;
+	--panel-contenxt-color: var(--dark) ;
+	--footer-background: white ;
+	--footer-color: var(--darker) ;
+	--footer-border-top: 2px solid var(--mid) ;
+	--footer-hr-color: var(--mid) ;
+}
+
+/* Styling on <body> to set background-image */
+body {
+	background: var(--body-bg) ;
+	background-size:cover;
+	background-attachment:fixed;
+}
+
+/* Classes for custom header and navbar styling */
+.my-header {
+	background: var(--header-background) ;
+	height: 4em;
+}
+.my-header h1 {
+	color: var(--header-color) ;
+	font-size: min(max(4.9vw, 19px), 40px);
+	text-align: center;
+}
+.my-navbar {
+	font-family: 'Roboto', sans-serif ;
+	background: var(--navbar-background) ;
+	color: var(--navbar-color) ;
+	font-weight: bold ;
+	font-size: 120%; 
+}
+
+/* Container for body-content (between header and footer) */
+.my-container {
+	 width: 95%;
+	 margin: auto ;
+	 min-height: max(100vh, 800px); /* Ensure footer is far enough down if the rest of the content takes up insufficient vertical space */
+}
+
+/* Panel overlay to hold body-content */
+.my-panel .my-title {
+	background: var(--panel-title-background) ;
+	padding: 6px ;
+	text-align: center ;
+	color: var(--panel-title-color) ;
+	border-radius: 24px 24px 0 0 ;
+}
+.my-panel .my-title * {
+	font-size: 160% ;
+	margin: 0; 
+	font-family: 'Roboto', sans-serif ;
+	letter-spacing: 0.06em;
+	font-variant: small-caps;
+}
+.my-panel .my-panel-contents {
+	background: var(--panel-contents-background) ;
+	color: var(--panel-contents-color) ;
+	padding: 20px ;
+	text-align: justify ;
+	border-radius: 0 0 24px 24px ;
+}
+
+/* Class for footer styling */
+.my-footer {
+	margin-top: 2em ;
+	padding: 0.5em;
+	color: var(--footer-color) ;
+	background: var(--footer-background) ;
+	border-top: var(--footer-border-top) ;
+	font-family: 'Roboto', sans-serif ;
+}
+.my-footer div {
+	gap: 1em ;
+}
+.my-footer hr {
+	color: var(--footer-hr-color) ;
+}
