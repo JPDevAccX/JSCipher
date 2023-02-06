@@ -66,9 +66,9 @@
 					<div class="my-panel-contents">
 						<div id="encode_decode_selector" class="d-flex justify-content-around">
 							<input type="radio" class="btn-check" name="ed_mode" id="mode_enc" autocomplete="off" checked>
-							<label class="btn btn-outline-primary" for="mode_enc">Encode</label>
+							<label class="btn btn-outline-success" for="mode_enc">Encode</label>
 							<input type="radio" class="btn-check" name="ed_mode" id="mode_dec" autocomplete="off">
-							<label class="btn btn-outline-primary" for="mode_dec">Decode</label>
+							<label class="btn btn-outline-success" for="mode_dec">Decode</label>
 						</div>
 						<div id="cipher_stage_container">
 							<fieldset class="my-stage-title" aria-hidden="true">
@@ -112,14 +112,17 @@
 	<!-- Cipher selection button -->
 	<template id="template_cipher_add">
 		<div class="d-grid">
-			<button type="button" class="cipher_add_button btn btn-primary">Info</button>
+			<button type="button" class="cipher_add_button btn btn-primary"></button>
 		</div>
 	</template>
 
 	<!-- Single integer setting -->
 	<template id="template_single_int_setting">
 		<fieldset class="d-flex justify-content-between align-items-center">
-			<legend class="settings_cipher_name"></legend>
+			<legend>
+				<span class="settings_cipher_name"></span>
+				<button class="remove_instance_button btn btn-sm btn-danger">Remove</button>
+			</legend>
 			<label class="settings_label my-settings-label"></label>
 			<input type="number" class="int form-control my-settings-input">
 		</fieldset>

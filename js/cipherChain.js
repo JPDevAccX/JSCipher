@@ -10,6 +10,10 @@ export default class CipherChain {
 		this.cipherInstances.push(cipher) ;
 	}
 
+	removeCipherInstance(i) {
+		this.cipherInstances.splice(i, 1) ;
+	}
+
 	processText(stageText, dir) {
 		if (dir === -1) {
 			for (let i = this.cipherInstances.length - 1; i >= 0; i--) {

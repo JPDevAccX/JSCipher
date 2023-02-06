@@ -13,3 +13,8 @@ function consoleErrAndReturnNull(errMsg) {
 function instanceCheck(arg, type) {
 	return (arg instanceof type) ;
 }
+
+// Get index of given node in parent
+function getNodeIndex(node) {
+	return Array.prototype.indexOf.call(node.parentNode.children, node);
+}
