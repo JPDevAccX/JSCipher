@@ -8,7 +8,7 @@
 	--dark: #333 ;
 	--darker: #222 ;
 
-	--body-bg: linear-gradient(0deg, rgba(140, 0, 80, 0.70), rgba(0, 0, 180, 0.40) 50%, rgba(0, 0, 64, 0.80)), 
+	--body-bg: linear-gradient(0deg, rgba(120, 0, 60, 0.70), rgba(0, 0, 140, 0.40) 50%, rgba(0, 0, 48, 0.80)), 
 		url(images/photo-1667124060133-c1074b0124be.avif);
 	--header-background: linear-gradient(180deg, rgb(32, 32, 220), rgb(0, 0, 160) 90%, rgb(0, 0, 140)) ;
 	--header-color: var(--lighter) ;
@@ -77,6 +77,17 @@ body {
 	padding: 20px ;
 	text-align: justify ;
 	border-radius: 0 0 24px 24px ;
+	display: flex ;
+	flex-direction:column ;
+	gap: 1em;
+}
+
+.my-textarea {
+	border: 1px solid gray;
+	resize:vertical;
+	padding: 0.5% 1%;
+	width: 97%;
+	margin: auto;
 }
 
 /* Class for footer styling */
@@ -93,4 +104,24 @@ body {
 }
 .my-footer hr {
 	color: var(--footer-hr-color) ;
+}
+
+/* Fieldset */
+fieldset, fieldset *{
+	all: revert ; /* Restore styles that Bootstrap removes */
+}
+fieldset {
+	background-color: #00000010;
+	padding-bottom: 1.1em;
+}
+fieldset legend {
+	font-size: 120% ;
+}
+
+/* Custom styling for settings label and input */
+.my-settings-label {
+	font-weight: bold;
+}
+.my-settings-input {
+	width: 75% ;
 }
