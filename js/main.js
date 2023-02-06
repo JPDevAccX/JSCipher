@@ -4,12 +4,9 @@ import CipherCaesar from './ciphers/caesar.js' ;
 import UIManager from './uiManager.js';
 import selectors from './selectors.js' ;
 
-const maxCipherInstances = 10 ;
+const maxCipherInstances = 5 ;
 
 const cipherChain = new CipherChain() ;
-
-const cipherCaesar = new CipherCaesar() ;
-const cipherCaesar2 = new CipherCaesar() ;
 
 const textInputEl = document.querySelector(selectors.textInput) ;
 const textOutputEl = document.querySelector(selectors.textOutput) ;
@@ -17,9 +14,9 @@ const textOutputEl = document.querySelector(selectors.textOutput) ;
 textInputEl.addEventListener('input', (e) => handleUpdate(e.target.value)) ;
 document.querySelector(selectors.encodeDecodeSelector).addEventListener('change', (e) => selectEncodeOrDecodeMode(e.target.id)) ;
 
-const uiManager = new UIManager(selectors, addActiveCipherInstance, handleUpdate) ;
+const uiManager = new UIManager(selectors, addActiveCipherInstance, handleUpdate, removeActiveCipherInstance) ;
 
-uiManager.addSelectionUIForCipherClass(CipherCaesar) ;
+uiManager.addCipherClass(CipherCaesar) ;
 
 function handleUpdate(val = null) {
 	if (val === null) val = textInputEl.value ;
@@ -32,6 +29,11 @@ function addActiveCipherInstance(cipherClass) {
 	cipherChain.addCipherInstance(cipherInstance) ;
 	handleUpdate() ;
 	return cipherInstance ;
+}
+
+function removeActiveCipherInstance(i) {
+	cipherChain.removeCipherInstance(i) ;
+	handleUpdate() ;
 }
 
 let mode = 'mode_enc';
