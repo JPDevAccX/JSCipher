@@ -5,6 +5,8 @@ export default {
 	textInput: '#text_input',
 	textOutput: '#text_output',
 	cipherSelectionContainer: '#cipher_selection_container',
+	templateCipherAdd: '#template_cipher_add',
+	cipherAddButton: '.cipher_add_button',
 	cipherStageContainer: '#cipher_stage_container',
 	cipherSettingsContainer: '#cipher_settings_container',
 	templateSingleIntSetting: '#template_single_int_setting',

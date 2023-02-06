@@ -88,7 +88,7 @@
 			<div class="col-md-3">
 				<aside class="my-panel">
 					<div class="my-title">
-						<h2>Cipher Keys</h2>
+						<h2>Active Ciphers</h2>
 					</div>
 					<div id="cipher_settings_container" class="my-panel-contents">
 					</div>
@@ -109,11 +109,18 @@
 
 	<!-- TEMPLATES -->
 
-	<!-- Single Integer Setting -->
+	<!-- Cipher selection button -->
+	<template id="template_cipher_add">
+		<div class="d-grid">
+			<button type="button" class="cipher_add_button btn btn-primary">Info</button>
+		</div>
+	</template>
+
+	<!-- Single integer setting -->
 	<template id="template_single_int_setting">
 		<fieldset class="d-flex justify-content-between align-items-center">
-			<legend class="settings_cipher_name">Caesar</legend>
-			<label class="settings_label my-settings-label">Shift</label>
+			<legend class="settings_cipher_name"></legend>
+			<label class="settings_label my-settings-label"></label>
 			<input type="number" class="int form-control my-settings-input">
 		</fieldset>
 	</template>

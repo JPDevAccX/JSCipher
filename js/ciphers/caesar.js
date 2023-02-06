@@ -1,33 +1,42 @@
 import AToZCipher from "./aToZCipher.js";
 
 export default class CipherCaesar extends AToZCipher {
-	constructor(shift, keyStreamLen = 1000) {
-		super(keyStreamLen) ;
-		this.shift = shift ;
+	constructor(shift) {
+		super() ;
+		this.shift = (shift === undefined) ? CipherCaesar.getDefaultValues()[0] : shift ;
+	}
+
+	static get displayName() {
+		return "Caesar Cipher" ;
 	}
 
 	get displayName() {
-		return "Caesar Cipher"
+		return CipherCaesar.displayName ;
 	}
 
 	setSettingsFieldValue(fieldName, value) {
 		this.shift = parseInt(value) ;
 	}
 
-	getConfigurationDescription() {
-		return [{type: "int", minValue: 1, maxValue: 25}] ;
+	static getConfigurationDescription() {
+		return [{type: "int", label: 'RShift', minValue: 1, maxValue: 25}] ;
 	}
+
+	getConfigurationDescription() {
+		return CipherCaesar.getConfigurationDescription() ;
+	}
+
+	static getDefaultValues() {
+		return [23] ; // Equivalent to left-shift of 3 (the original Caesar Cipher)
+	}
+
+	getCurrentValues() {
+		return [this.shift] ;
+	}
+
 
 	_generateKeyStreamValue() {
 		return this.shift ; // (iron-clad encryption here for sure!)
-	}
-
-	encodeText(text) {
-		return this._processText(text, 1) ;
-	}
-
-	decodeText(text) {
-		return this._processText(text, -1) ;
 	}
 
 	processText(text, shiftSign) {
