@@ -1,8 +1,8 @@
 import StreamCipher from "./streamCipher.js";
 
 export default class AToZCipher extends StreamCipher {
-	constructor(keyStreamLen) {
-		super(keyStreamLen) ;
+	constructor() {
+		super() ;
 		
 		this.processCharCodeMin = "A".charCodeAt(0) ;
 		this.processCharCodeMax = "Z".charCodeAt(0) ;
