@@ -1,12 +1,14 @@
 import Cipher from "./ciphers/cipher.js";
 
 export default class CipherChain {
-	constructor() {
+	constructor(maxCipherInstances = 5) {
 		this.cipherInstances = [] ;
+		this.maxCipherInstances = maxCipherInstances ;
 	}
 
 	addCipherInstance(cipher) {
 		if (!instanceCheck(cipher, Cipher)) return consoleErrAndReturnNull('Argument 1 is not a Cipher') ;
+		if (this.cipherInstances.length >= this.maxCipherInstances) return null ;
 		this.cipherInstances.push(cipher) ;
 	}
 
@@ -26,9 +28,5 @@ export default class CipherChain {
 			}
 		}
 		return stageText ;
-	}
-
-	getNumInstances() {
-		return this.cipherInstances.length ;
 	}
 }

@@ -9,8 +9,11 @@ export default {
 	cipherAddButton: '.cipher_add_button',
 	cipherStageContainer: '#cipher_stage_container',
 	cipherSettingsContainer: '#cipher_settings_container',
-	templateSingleIntSetting: '#template_single_int_setting',
+	templateSettings_int: '#template_single_int_setting',
+	templateSettings_intint: '#template_two_ints_setting',
 	templateSettingCipherName: '.settings_cipher_name',
-	templateSingleIntSettingLabel: '.settings_label',
-	templateSingleIntInput: '.int'
+	templateIntsSettingLabel0: '.settings_label0',
+	templateIntsSettingInput0: '.int0',
+	templateIntsSettingLabel1: '.settings_label1',
+	templateIntsSettingInput1: '.int1',
 } ;
