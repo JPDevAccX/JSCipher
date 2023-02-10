@@ -1,22 +1,22 @@
 // Type: Module (with side-effects)
 import CipherChain from './cipherChain.js' ;
-import CipherCaesar from './ciphers/caesar.js' ;
 import UIManager from './uiManager.js';
 import selectors from './selectors.js' ;
-
-const maxCipherInstances = 5 ;
+import CipherCaesar from './ciphers/caesar.js' ;
+import CipherRollingCaesar from './ciphers/rollingCaesar.js';
 
 const cipherChain = new CipherChain() ;
-
 const textInputEl = document.querySelector(selectors.textInput) ;
 const textOutputEl = document.querySelector(selectors.textOutput) ;
-
 textInputEl.addEventListener('input', (e) => handleUpdate(e.target.value)) ;
 document.querySelector(selectors.encodeDecodeSelector).addEventListener('change', (e) => selectEncodeOrDecodeMode(e.target.id)) ;
-
 const uiManager = new UIManager(selectors, addActiveCipherInstance, handleUpdate, removeActiveCipherInstance) ;
 
+// Add Cipher Classes
 uiManager.addCipherClass(CipherCaesar) ;
+uiManager.addCipherClass(CipherRollingCaesar) ;
+
+/// -----------------------------------------
 
 function handleUpdate(val = null) {
 	if (val === null) val = textInputEl.value ;
@@ -24,10 +24,11 @@ function handleUpdate(val = null) {
 }
 
 function addActiveCipherInstance(cipherClass) {
-	if (cipherChain.getNumInstances() >= maxCipherInstances) return null ;
 	const cipherInstance = new cipherClass() ;
-	cipherChain.addCipherInstance(cipherInstance) ;
-	handleUpdate() ;
+	if (cipherInstance) {
+		cipherChain.addCipherInstance(cipherInstance) ;
+		handleUpdate() ;
+	}
 	return cipherInstance ;
 }
 
@@ -36,7 +37,7 @@ function removeActiveCipherInstance(i) {
 	handleUpdate() ;
 }
 
-let mode = 'mode_enc';
+let mode = 'mode_enc'; // Initial mode
 function selectEncodeOrDecodeMode(newMode) {
 	mode = newMode ;
 	handleUpdate() ;

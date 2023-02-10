@@ -17,8 +17,8 @@
 	--panel-title-background: white;
 	--panel-title-color: var(--dark) ;
 	--panel-contents-background: #fffb;
-	--panel-contenxt-color: var(--dark) ;
-	--footer-background: white ;
+	--panel-contents-color: var(--darker) ;
+	--footer-background: #fffb ;
 	--footer-color: var(--darker) ;
 	--footer-border-top: 2px solid var(--mid) ;
 	--footer-hr-color: var(--mid) ;

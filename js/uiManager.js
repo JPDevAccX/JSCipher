@@ -11,7 +11,8 @@ export default class UIManager {
 
 		const keysToRetrieve = [
 			'cipherSelectionContainer', 'templateCipherAdd',
-			'cipherSettingsContainer', 'templateSingleIntSetting'
+			'cipherSettingsContainer',
+			'templateSettings_int', 'templateSettings_intint',
 		] ;
 		this.els = getElementsBySelector(selectors, keysToRetrieve) ;
 		this.els.cipherSelectionContainer.addEventListener('click', (e) => {
@@ -46,28 +47,34 @@ export default class UIManager {
 		const cipherInstanceIndex = this.cipherInstances.length ;
 		this.cipherInstances.push(cipherInstance) ;
 
-		const settingsToTemplate = {'int' : 'templateSingleIntSetting'} ;
 		const confDesc = cipherInstance.getConfigurationDescription() ;
 		const settingsType = confDesc.reduce((str, {type}) => str + type, "") ;
-		const template = settingsToTemplate[settingsType] ;
-		if (template) {
-			const settingsEl = this.els[template].content.firstElementChild.cloneNode(true);
+		const templateElKey = 'templateSettings_' + settingsType ;
+		if (templateElKey) {
+			const settingsEl = this.els[templateElKey].content.firstElementChild.cloneNode(true);
 			if (settingsEl) {
 				settingsEl.querySelector(this.selectors.templateSettingCipherName).innerText = cipherInstance.displayName ;
 
-				// Single integer setting
-				if (template === 'templateSingleIntSetting') {
-					const inputId = cipherInstanceIndex + '_int' ;
-					settingsEl.querySelector(this.selectors.templateSingleIntSettingLabel).htmlFor = inputId ;
-					settingsEl.querySelector(this.selectors.templateSingleIntSettingLabel).innerText = confDesc[0].label ;
+				// Integer settings
+				let intInputIndex = 0 ;
+				for (const inputDesc of confDesc) {
+					if (inputDesc.type === 'int') {
+						const labelSelectorKey = 'templateIntsSettingLabel' + intInputIndex ;
+						const inputSelectorKey = 'templateIntsSettingInput' + intInputIndex ;
+						const inputId = cipherInstanceIndex + '_int' + intInputIndex ;
+						settingsEl.querySelector(this.selectors[labelSelectorKey]).htmlFor = inputId ;
+						settingsEl.querySelector(this.selectors[labelSelectorKey]).innerText = inputDesc.label ;
 
-					const intInputEl = settingsEl.querySelector(this.selectors.templateSingleIntInput) ;
-					intInputEl.id = inputId ;
-					intInputEl.dataset.fieldName = 'int' ;
-					intInputEl.min = confDesc[0].minValue ;
-					intInputEl.value = cipherInstance.getCurrentValues()[0] ;
-					intInputEl.max = confDesc[0].maxValue ;
-			}
+						const intInputEl = settingsEl.querySelector(this.selectors[inputSelectorKey]) ;
+						intInputEl.id = inputId ;
+						intInputEl.dataset.fieldName = 'int' + intInputIndex ;
+						intInputEl.min = inputDesc.minValue ;
+						intInputEl.value = cipherInstance.getCurrentValues()[intInputIndex] ;
+						intInputEl.max = inputDesc.maxValue ;
+
+						intInputIndex++ ;
+					}
+				}
 
 				this.els.cipherSettingsContainer.appendChild(settingsEl) ;
 			}

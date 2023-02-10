@@ -16,10 +16,10 @@ export default class AToZCipher extends StreamCipher {
 			const charCode = textUpperCase.charCodeAt(i) ;
 			if (charCode >= this.processCharCodeMin && charCode <= this.processCharCodeMax) {
 				const capsMask = (text.charCodeAt(i) & 32) ;
-				const newCharCode = transformFunc(charCode) ;
+				const newCharCode = transformFunc(charCode, i) ;
 				out += String.fromCharCode(newCharCode | capsMask) ;
 			}
-			else out += String.fromCharCode(charCode) ;
+			else out += String.fromCharCode(text.charCodeAt(i)) ; // Pass-through on unhandled characters
 		}
 		return out ;
 	}

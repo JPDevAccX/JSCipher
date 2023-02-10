@@ -34,14 +34,17 @@ export default class CipherCaesar extends AToZCipher {
 		return [this.shift] ;
 	}
 
-
 	_generateKeyStreamValue() {
 		return this.shift ; // (iron-clad encryption here for sure!)
 	}
 
 	processText(text, shiftSign) {
-		const transformFunc = (charCode) => {
-			const keyValue = this._generateKeyStreamValue() ;
+		return this._processText(text, shiftSign, () => this._generateKeyStreamValue()) ;
+	}
+	
+	_processText(text, shiftSign, generateKeyStreamValueFunc) {
+		const transformFunc = (charCode, i) => {
+			const keyValue = generateKeyStreamValueFunc(i) ;
 			// Calculate the output (note: we have to add this.moduloLen to get correct wrapping behaviour for decode)
 			return ((charCode - this.processCharCodeMin) + this.moduloLen + keyValue * shiftSign) % this.moduloLen + this.processCharCodeMin ;
 		} ;
