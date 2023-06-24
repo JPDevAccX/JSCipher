@@ -18,3 +18,8 @@ function instanceCheck(arg, type) {
 function getNodeIndex(node) {
 	return Array.prototype.indexOf.call(node.parentNode.children, node);
 }
+
+// Calculate factorial
+function factorial(value) {
+	return (value > 1) ? value * factorial(value - 1) : 1 ; 
+}
