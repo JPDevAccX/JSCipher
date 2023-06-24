@@ -50,37 +50,32 @@ export default class UIManager {
 		const confDesc = cipherInstance.getConfigurationDescription() ;
 		const settingsType = confDesc.reduce((str, {type}) => str + type, "") ;
 		const templateElKey = 'templateSettings_' + settingsType ;
-		if (templateElKey) {
-			const settingsEl = this.els[templateElKey].content.firstElementChild.cloneNode(true);
-			if (settingsEl) {
-				settingsEl.querySelector(this.selectors.templateSettingCipherName).innerText = cipherInstance.displayName ;
+		const settingsEl = this.els[templateElKey].content.firstElementChild.cloneNode(true);
+		if (settingsEl) {
+			settingsEl.querySelector(this.selectors.templateSettingCipherName).innerText = cipherInstance.displayName ;
 
-				// Integer settings
-				let intInputIndex = 0 ;
-				for (const inputDesc of confDesc) {
-					if (inputDesc.type === 'int') {
-						const labelSelectorKey = 'templateIntsSettingLabel' + intInputIndex ;
-						const inputSelectorKey = 'templateIntsSettingInput' + intInputIndex ;
-						const inputId = cipherInstanceIndex + '_int' + intInputIndex ;
-						settingsEl.querySelector(this.selectors[labelSelectorKey]).htmlFor = inputId ;
-						settingsEl.querySelector(this.selectors[labelSelectorKey]).innerText = inputDesc.label ;
+			// Integer settings
+			let intInputIndex = 0 ;
+			for (const inputDesc of confDesc) {
+				if (inputDesc.type === 'int') {
+					const inputSelectorKey = 'templateIntsSettingInput' + intInputIndex ;
+					const labelSelectorKey = 'templateIntsSettingLabel' + intInputIndex ;
+					const inputId = cipherInstanceIndex + '_int' + intInputIndex ;
+					settingsEl.querySelector(this.selectors[labelSelectorKey]).htmlFor = inputId ;
+					settingsEl.querySelector(this.selectors[labelSelectorKey]).innerText = inputDesc.label ;
 
-						const intInputEl = settingsEl.querySelector(this.selectors[inputSelectorKey]) ;
-						intInputEl.id = inputId ;
-						intInputEl.dataset.fieldName = 'int' + intInputIndex ;
-						intInputEl.min = inputDesc.minValue ;
-						intInputEl.value = cipherInstance.getCurrentValues()[intInputIndex] ;
-						intInputEl.max = inputDesc.maxValue ;
+					const intInputEl = settingsEl.querySelector(this.selectors[inputSelectorKey]) ;
+					intInputEl.id = inputId ;
+					intInputEl.dataset.fieldName = 'int' + intInputIndex ;
+					this.initIntSettingsForCipherInstanceEl(cipherInstance, inputDesc, intInputEl, intInputIndex) ;
 
-						intInputIndex++ ;
-					}
+					intInputIndex++ ;
 				}
-
-				this.els.cipherSettingsContainer.appendChild(settingsEl) ;
 			}
-			else console.error("No template element for this combination of settings") ;
+			
+			this.els.cipherSettingsContainer.appendChild(settingsEl) ;
 		}
-		else console.error("No template definition for this combination of settings") ;
+		else console.error("No template element for this combination of settings") ;
 	}
 
 	handleSettingsInput(target) {
@@ -91,8 +86,24 @@ export default class UIManager {
 			value = 0 ;
 			target.value = value ;
 		}
-		this.cipherInstances[cipherInstanceIndex].setSettingsFieldValue(fieldName, value) ;
+		const cipherInstance = this.cipherInstances[cipherInstanceIndex] ;
+
+		cipherInstance.setSettingsFieldValue(fieldName, value) ;
 		this.handleSettingsChangeCallback() ;
+
+		const confDesc = cipherInstance.getConfigurationDescription() ;
+		const settingsEl = this.els.cipherSettingsContainer.children[cipherInstanceIndex] ;
+
+		// Integer settings
+		let intInputIndex = 0 ;
+		for (const inputDesc of confDesc) {
+			if (inputDesc.type === 'int') {
+				const inputSelectorKey = 'templateIntsSettingInput' + intInputIndex ;
+				const intInputEl = settingsEl.querySelector(this.selectors[inputSelectorKey]) ;
+				this.initIntSettingsForCipherInstanceEl(cipherInstance, inputDesc, intInputEl, intInputIndex) ;
+				intInputIndex++ ;
+			}
+		}
 	}
 
 	handleCipherInstanceRemoval(target) {
@@ -104,5 +115,11 @@ export default class UIManager {
 	removeCipherInstanceEl(cipherInstanceIndex) {
 		this.els.cipherSettingsContainer.children[cipherInstanceIndex].remove() ;
 		this.cipherInstances.splice(cipherInstanceIndex, 1) ;
+	}
+
+	initIntSettingsForCipherInstanceEl(cipherInstance, inputDesc, intInputEl, intInputIndex) {
+		intInputEl.min = inputDesc.minValue ;
+		intInputEl.value = cipherInstance.getCurrentValues()[intInputIndex] ;
+		intInputEl.max = inputDesc.maxValue ;
 	}
 }

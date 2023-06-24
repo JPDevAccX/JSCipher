@@ -4,6 +4,7 @@ import UIManager from './uiManager.js';
 import selectors from './selectors.js' ;
 import CipherCaesar from './ciphers/caesar.js' ;
 import CipherRollingCaesar from './ciphers/rollingCaesar.js';
+import CipherPerm from './ciphers/permCipher.js';
 
 const cipherChain = new CipherChain() ;
 const textInputEl = document.querySelector(selectors.textInput) ;
@@ -15,6 +16,7 @@ const uiManager = new UIManager(selectors, addActiveCipherInstance, handleUpdate
 // Add Cipher Classes
 uiManager.addCipherClass(CipherCaesar) ;
 uiManager.addCipherClass(CipherRollingCaesar) ;
+uiManager.addCipherClass(CipherPerm) ;
 
 /// -----------------------------------------
 
