@@ -118,10 +118,15 @@ fieldset legend {
 	font-size: 120% ;
 }
 
-/* Custom styling for settings label and input */
+/* Misc */
+.my-remove-instance-button {
+	margin-left: -6px ;
+}
 .my-settings-label {
 	font-weight: bold;
 }
-.my-settings-input {
-	width: 75% ;
+
+/* Generic rules */
+.my-box-sizing-bb {
+	box-sizing: border-box ;
 }

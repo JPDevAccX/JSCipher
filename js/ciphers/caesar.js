@@ -7,7 +7,7 @@ export default class CipherCaesar extends AToZCipher {
 	}
 
 	static get displayName() {
-		return "Caesar Cipher" ;
+		return "Caesar" ;
 	}
 
 	get displayName() {

@@ -67,12 +67,9 @@ export default class UIManager {
 				if (inputDesc.type === 'int') {
 					const inputSelectorKey = 'templateIntsSettingInput' + intInputIndex ;
 					const labelSelectorKey = 'templateIntsSettingLabel' + intInputIndex ;
-					const inputId = cipherInstanceIndex + '_int' + intInputIndex ;
-					settingsEl.querySelector(this.selectors[labelSelectorKey]).htmlFor = inputId ;
 					settingsEl.querySelector(this.selectors[labelSelectorKey]).innerText = inputDesc.label ;
 
 					const intInputEl = settingsEl.querySelector(this.selectors[inputSelectorKey]) ;
-					intInputEl.id = inputId ;
 					intInputEl.dataset.fieldName = 'int' + intInputIndex ;
 					this.initIntSettingsForCipherInstanceEl(cipherInstance, inputDesc, intInputEl, intInputIndex) ;
 
@@ -86,7 +83,7 @@ export default class UIManager {
 	}
 
 	handleSettingsInput(target) {
-		const cipherInstanceIndex = getNodeIndex(target.parentNode);
+		const cipherInstanceIndex = getNodeIndexOfAncestorWithClass(target, "settings");
 		const fieldName = target.dataset.fieldName ;
 		let value = target.value ;
 		if (isNaN(parseInt(value))) {
@@ -114,7 +111,7 @@ export default class UIManager {
 	}
 
 	handleCipherInstanceRemoval(target) {
-		const cipherInstanceIndex = getNodeIndex(target.parentNode.parentNode);
+		const cipherInstanceIndex = getNodeIndexOfAncestorWithClass(target, "settings");
 		this.removeActiveCipherInstanceCallback(cipherInstanceIndex) ;
 		this.removeCipherInstanceEl(cipherInstanceIndex) ;
 		this.setAddCipherButtonsEnabledState(true) ;

@@ -38,7 +38,7 @@ export default class PermCipher extends Cipher {
 	}
 
 	static get displayName() {
-		return "Permutation Cipher" ;
+		return "Permutation" ;
 	}
 
 	get displayName() {
@@ -56,8 +56,8 @@ export default class PermCipher extends Cipher {
 
 	getConfigurationDescription() {
 		return [
-			{type: "int", label: 'BlockLen', minValue: 2, maxValue: 10},
-			{type: "int", label: 'Permutation', minValue: 1, maxValue: factorial(this.blockLen) - 1}
+			{type: "int", label: 'BlockLen', minValue: 2, maxValue: 8},
+			{type: "int", label: 'Perm #', minValue: 1, maxValue: factorial(this.blockLen) - 1}
 		] ;
 	}
 
