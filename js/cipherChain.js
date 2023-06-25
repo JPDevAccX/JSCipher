@@ -6,10 +6,14 @@ export default class CipherChain {
 		this.maxCipherInstances = maxCipherInstances ;
 	}
 
-	addCipherInstance(cipher) {
-		if (!instanceCheck(cipher, Cipher)) return consoleErrAndReturnNull('Argument 1 is not a Cipher') ;
-		if (this.cipherInstances.length >= this.maxCipherInstances) return null ;
-		this.cipherInstances.push(cipher) ;
+	addCipherInstanceFromClass(cipherClass) {
+		if (this.cipherInstances.length >= this.maxCipherInstances) {
+			return consoleErrAndReturnNull('Maximum number of cipher instances already reached') ;
+		}
+		const cipherInstance = new cipherClass() ;
+		if (!instanceCheck(cipherInstance, Cipher)) return consoleErrAndReturnNull('Argument 1 was not a Cipher Class') ;
+		this.cipherInstances.push(cipherInstance) ;
+		return {cipherInstance, isMaxCipherInstances: this.cipherInstances.length === this.maxCipherInstances}  ;
 	}
 
 	removeCipherInstance(i) {
