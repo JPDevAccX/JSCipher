@@ -19,6 +19,15 @@ function getNodeIndex(node) {
 	return Array.prototype.indexOf.call(node.parentNode.children, node);
 }
 
+// Get index of ancestor node with given class in parent
+function getNodeIndexOfAncestorWithClass(node, className) {
+	do {
+		node = node.parentNode ;
+	}
+	while (node !== null && node.className !== className) ;
+	return (node !== null) ? getNodeIndex(node) : null ;
+}
+
 // Calculate factorial
 function factorial(value) {
 	return (value > 1) ? value * factorial(value - 1) : 1 ; 

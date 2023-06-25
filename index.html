@@ -47,7 +47,7 @@
 	<div class="my-container">
 		<div class="row g-3 mt-2 justify-content-between">
 			<!-- LEFT PANEL -->
-			<div class="col-md-3">
+			<div class="col-lg-3">
 				<aside class="my-panel">
 					<div class="my-title">
 						<h2>Ciphers</h2>
@@ -58,7 +58,7 @@
 			</div>
 
 			<!-- MID PANEL -->
-			<div class="col-md-6">
+			<div class="col-lg-6 order-lg-0 order-first">
 				<main class="my-panel">
 					<div class="my-title">
 						<h2>- Encoder / Decoder -</h2>
@@ -85,7 +85,7 @@
 			</div>
 
 			<!-- RIGHT PANEL -->
-			<div class="col-md-3">
+			<div class="col">
 				<aside class="my-panel">
 					<div class="my-title">
 						<h2>Active Ciphers</h2>
@@ -118,27 +118,37 @@
 
 	<!-- Single integer setting -->
 	<template id="template_single_int_setting">
-		<fieldset class="d-flex justify-content-between align-items-center">
-			<legend>
-				<span class="settings_cipher_name"></span>
-				<button class="remove_instance_button btn btn-sm btn-danger">Remove</button>
+		<fieldset class="settings">
+			<legend class="fs-6 fw-bold">
+				<button class="remove_instance_button btn btn-sm btn-danger me-1 fw-bold my-remove-instance-button">X</button>
+				<span class="settings_cipher_name me-2"></span>
+				<div></div>
 			</legend>
-			<label class="settings_label0 my-settings-label"></label>
-			<input type="number" class="int0 form-control my-settings-input">
+			<label class="my-settings-label me-2 d-flex align-items-center">
+				<span class="settings_label0 me-2"></span> 
+				<input type="number" class="int0 form-control">
+			</label>	
 		</fieldset>
 	</template>
 
 	<!-- Two integer settings -->
 	<template id="template_two_ints_setting">
-		<fieldset class="d-flex justify-content-between align-items-center">
-			<legend>
-				<span class="settings_cipher_name"></span>
-				<button class="remove_instance_button btn btn-sm btn-danger">Remove</button>
+		<fieldset class="settings">
+			<legend class="fs-6 fw-bold">
+				<button class="remove_instance_button btn btn-sm btn-danger me-1 fw-bold my-remove-instance-button">X</button>
+				<span class="settings_cipher_name me-2"></span>
+				<div></div>
 			</legend>
-			<label class="settings_label0 my-settings-label"></label>
-			<input type="number" class="int0 form-control my-settings-input">
-			<label class="settings_label1 my-settings-label"></label>
-			<input type="number" class="int1 form-control my-settings-input">
+			<div class="row g-2">
+				<label class="col-6 col-lg-12 col-xl-6 my-box-sizing-bb my-settings-label">
+					<span class="settings_label0 me-2"></span> 
+					<input type="number" class="int0 form-control my-box-sizing-bb">
+				</label>
+				<label class="col-6 col-lg-12 col-xl-6 my-box-sizing-bb my-settings-label">
+					<span class="settings_label1 me-2"></span>
+					<input type="number" class="int1 form-control my-box-sizing-bb">
+				</label>
+			</div>
 		</fieldset>
 	</template>
 </body>

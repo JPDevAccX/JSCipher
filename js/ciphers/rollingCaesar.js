@@ -8,7 +8,7 @@ export default class CipherRollingCaesar extends CipherCaesar {
 	}
 
 	static get displayName() {
-		return "Rolling Caesar Cipher" ;
+		return "Rolling Caesar" ;
 	}
 
 	get displayName() {
