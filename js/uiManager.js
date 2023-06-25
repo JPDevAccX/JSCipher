@@ -35,10 +35,17 @@ export default class UIManager {
 		this.els.cipherSelectionContainer.appendChild(cipherAddEl) ;
 	}
 
+	setAddCipherButtonsEnabledState(areEnabled) {
+		this.els.cipherSelectionContainer.querySelectorAll('button').forEach((el) => {
+			el.disabled = !areEnabled ;
+		}) ;
+	}
+
 	addActiveCipherInstance(target) {
 		const cipherClass = this.cipherClasses[target.dataset.cipherClassIndex] ;
-		const cipherInstance = this.addActiveCipherInstanceCallback(cipherClass) ;
-		if (cipherInstance) this.addCipherInstanceEl(cipherInstance) ;
+		const {cipherInstance, isMaxCipherInstances} = this.addActiveCipherInstanceCallback(cipherClass) ;
+		this.addCipherInstanceEl(cipherInstance) ;
+		this.setAddCipherButtonsEnabledState(!isMaxCipherInstances) ;
 	}
 
 	addCipherInstanceEl(cipherInstance) {
@@ -110,6 +117,7 @@ export default class UIManager {
 		const cipherInstanceIndex = getNodeIndex(target.parentNode.parentNode);
 		this.removeActiveCipherInstanceCallback(cipherInstanceIndex) ;
 		this.removeCipherInstanceEl(cipherInstanceIndex) ;
+		this.setAddCipherButtonsEnabledState(true) ;
 	}
 
 	removeCipherInstanceEl(cipherInstanceIndex) {

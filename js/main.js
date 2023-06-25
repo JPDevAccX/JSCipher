@@ -26,12 +26,9 @@ function handleUpdate(val = null) {
 }
 
 function addActiveCipherInstance(cipherClass) {
-	const cipherInstance = new cipherClass() ;
-	if (cipherInstance) {
-		cipherChain.addCipherInstance(cipherInstance) ;
-		handleUpdate() ;
-	}
-	return cipherInstance ;
+	const {cipherInstance, isMaxCipherInstances} = cipherChain.addCipherInstanceFromClass(cipherClass) ;
+	handleUpdate() ;
+	return {cipherInstance, isMaxCipherInstances} ;
 }
 
 function removeActiveCipherInstance(i) {
