@@ -38,7 +38,7 @@ export default class CipherRollingCaesar extends CipherCaesar {
 	getInfo() {
 		return (this.shift === 13 && this.rollingShift === 13) && 
 			{
-				title: "Symmetric (alternating ROT-13)",
+				title: "Reciprocal (alternating ROT-13)",
 				desc : "These settings create a cipher with alternating ROT-13 / plaintext encoding. Encoding and decoding operations are the same."
 			}
 	}

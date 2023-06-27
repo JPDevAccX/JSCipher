@@ -1,0 +1,23 @@
+{
+  "name": "jscipher",
+  "version": "1.0.0",
+  "description": "Cipher Sandbox",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JPDevAccX/JSCipher.git"
+  },
+  "author": "James Percival",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/JPDevAccX/JSCipher/issues"
+  },
+  "homepage": "https://github.com/JPDevAccX/JSCipher#readme",
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0"
+  }
+}
