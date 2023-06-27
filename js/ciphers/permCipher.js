@@ -36,8 +36,8 @@ export default class PermCipher extends Cipher {
 			this.positionTableDecode[position] = i ;
 		}
 
-		// Determine if the tables are the same (and the cipher is symmetric)
-		this.isSymmetric = (this.positionTableEncode.toString() === this.positionTableDecode.toString()) ;
+		// Determine if the tables are the same (and the cipher is a reciprocal one)
+		this.isReciprocal = (this.positionTableEncode.toString() === this.positionTableDecode.toString()) ;
 	}
 
 	static get displayName() {
@@ -65,9 +65,9 @@ export default class PermCipher extends Cipher {
 	}
 
 	getInfo() {
-		return this.isSymmetric && 
+		return this.isReciprocal && 
 			{
-				title: "Symmetric",
+				title: "Reciprocal",
 				desc : "These settings create a cipher where the encoding and decoding operations are the same."
 			}
 	}
