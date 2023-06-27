@@ -16,4 +16,7 @@ export default {
 	templateIntsSettingInput0: '.int0',
 	templateIntsSettingLabel1: '.settings_label1',
 	templateIntsSettingInput1: '.int1',
+	infoButton: '.info_button',
+	modalTitle: '#modal_title',
+	modalBody: '#modal_body',
 } ;

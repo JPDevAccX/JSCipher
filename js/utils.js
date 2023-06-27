@@ -24,7 +24,7 @@ function getNodeIndexOfAncestorWithClass(node, className) {
 	do {
 		node = node.parentNode ;
 	}
-	while (node !== null && node.className !== className) ;
+	while (node !== null && !node.classList.contains(className)) ;
 	return (node !== null) ? getNodeIndex(node) : null ;
 }
 

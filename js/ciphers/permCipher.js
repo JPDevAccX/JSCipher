@@ -35,6 +35,9 @@ export default class PermCipher extends Cipher {
 		for (const [i, position] of this.positionTableEncode.entries()) {
 			this.positionTableDecode[position] = i ;
 		}
+
+		// Determine if the tables are the same (and the cipher is symmetric)
+		this.isSymmetric = (this.positionTableEncode.toString() === this.positionTableDecode.toString()) ;
 	}
 
 	static get displayName() {
@@ -59,6 +62,14 @@ export default class PermCipher extends Cipher {
 			{type: "int", label: 'BlockLen', minValue: 2, maxValue: 8},
 			{type: "int", label: 'Perm #', minValue: 1, maxValue: factorial(this.blockLen) - 1}
 		] ;
+	}
+
+	getInfo() {
+		return this.isSymmetric && 
+			{
+				title: "Symmetric",
+				desc : "These settings create a cipher where the encoding and decoding operations are the same."
+			}
 	}
 
 	static getDefaultValues() {

@@ -118,10 +118,11 @@
 
 	<!-- Single integer setting -->
 	<template id="template_single_int_setting">
-		<fieldset class="settings">
+		<fieldset class="settings p-2">
 			<legend class="fs-6 fw-bold">
-				<button class="remove_instance_button btn btn-sm btn-danger me-1 fw-bold my-remove-instance-button">X</button>
+				<button class="remove_instance_button btn btn-sm btn-danger fw-bold my-remove-instance-button">X</button>
 				<span class="settings_cipher_name me-2"></span>
+				<button type="button" data-bs-toggle="modal" data-bs-target="#modal" class="info_button d-none">i</button>
 				<div></div>
 			</legend>
 			<label class="my-settings-label me-2 d-flex align-items-center">
@@ -133,10 +134,11 @@
 
 	<!-- Two integer settings -->
 	<template id="template_two_ints_setting">
-		<fieldset class="settings">
+		<fieldset class="settings p-2">
 			<legend class="fs-6 fw-bold">
-				<button class="remove_instance_button btn btn-sm btn-danger me-1 fw-bold my-remove-instance-button">X</button>
-				<span class="settings_cipher_name me-2"></span>
+				<button class="remove_instance_button btn btn-sm btn-danger fw-bold my-remove-instance-button">X</button>
+				<span class="settings_cipher_name"></span>
+				<button type="button" data-bs-toggle="modal" data-bs-target="#modal" class="info_button d-none">i</button>
 				<div></div>
 			</legend>
 			<div class="row g-2">
@@ -151,5 +153,24 @@
 			</div>
 		</fieldset>
 	</template>
+
+	<!-- Modal -->
+	<div id="modal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="modal_title" class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p id="modal_body"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>

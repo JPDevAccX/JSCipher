@@ -76,7 +76,8 @@ export default class UIManager {
 					intInputIndex++ ;
 				}
 			}
-			
+
+			this.updateInfoButton(settingsEl, cipherInstance, true) ;
 			this.els.cipherSettingsContainer.appendChild(settingsEl) ;
 		}
 		else console.error("No template element for this combination of settings") ;
@@ -108,6 +109,8 @@ export default class UIManager {
 				intInputIndex++ ;
 			}
 		}
+
+		this.updateInfoButton(settingsEl, cipherInstance) ;
 	}
 
 	handleCipherInstanceRemoval(target) {
@@ -126,5 +129,26 @@ export default class UIManager {
 		intInputEl.min = inputDesc.minValue ;
 		intInputEl.value = cipherInstance.getCurrentValues()[intInputIndex] ;
 		intInputEl.max = inputDesc.maxValue ;
+	}
+
+	updateInfoButton(settingsEl, cipherInstance, isCreating = false) {
+		const infoButtonEl = settingsEl.querySelector(this.selectors.infoButton) ;
+
+		if (isCreating) {
+			infoButtonEl.addEventListener('click', () => {
+				const info = cipherInstance.getInfo ? cipherInstance.getInfo() : null ;
+				if (info) {
+					document.querySelector(this.selectors.modalTitle).innerText = info.title ;
+					document.querySelector(this.selectors.modalBody).innerText = info.desc ;
+				}
+			}) ;
+		}
+
+		const info = cipherInstance.getInfo ? cipherInstance.getInfo() : null ;
+		if (info) {
+			infoButtonEl.title = info.title ;
+			infoButtonEl.classList.remove('d-none') ;
+		}
+		else infoButtonEl.classList.add('d-none') ;
 	}
 }
