@@ -81,6 +81,11 @@ body {
 	flex-direction:column ;
 	gap: 1em;
 }
+@media (min-width: 992px) {
+	.my-panel .my-panel-contents {
+  	padding: min(20px, 1.5vw) ;
+	}
+}
 
 .my-textarea {
 	border: 1px solid gray;
@@ -120,7 +125,9 @@ fieldset legend {
 
 /* Misc */
 .my-remove-instance-button {
-	margin-left: -6px ;
+	margin-left: -4px ;
+	margin-right: 2px ;
+	padding: 2px 6px;
 }
 .my-settings-label {
 	font-weight: bold;

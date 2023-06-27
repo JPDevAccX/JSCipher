@@ -26,6 +26,14 @@ export default class CipherCaesar extends AToZCipher {
 		return CipherCaesar.getConfigurationDescription() ;
 	}
 
+	getInfo() {
+		return (this.shift === 13) && 
+			{
+				title: "Symmetric (ROT-13)",
+				desc : "These settings create the \"ROT-13\" cipher where the encoding and decoding operations are the same."
+			}
+	}
+
 	static getDefaultValues() {
 		return [23] ; // Equivalent to left-shift of 3 (the original Caesar Cipher)
 	}

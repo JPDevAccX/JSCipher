@@ -35,6 +35,14 @@ export default class CipherRollingCaesar extends CipherCaesar {
 		return [23, 1] ; // Equivalent to left-shift of 3 (the original Caesar Cipher) for first character
 	}
 
+	getInfo() {
+		return (this.shift === 13 && this.rollingShift === 13) && 
+			{
+				title: "Symmetric (alternating ROT-13)",
+				desc : "These settings create a cipher with alternating ROT-13 / plaintext encoding. Encoding and decoding operations are the same."
+			}
+	}
+
 	getCurrentValues() {
 		return [this.shift, this.rollingShift] ;
 	}
