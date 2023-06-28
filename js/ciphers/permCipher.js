@@ -1,4 +1,5 @@
 import Cipher from "./cipher.js";
+import { factorial } from "../maths.js";
 
 export default class PermCipher extends Cipher {
 	constructor(blockLen, permutationCode) {
@@ -73,7 +74,7 @@ export default class PermCipher extends Cipher {
 	}
 
 	static getDefaultValues() {
-		return [3, 1] ;
+		return [2, 1] ;
 	}
 
 	getCurrentValues() {
@@ -98,6 +99,9 @@ export default class PermCipher extends Cipher {
 			const position = positionTable[offsetInBlock] ;
 			textOut += textInArray[positionOffsetForBlock + position] ;
 		}
+
+ 		// Trim any right-hand whitespace on decode as it may have been padding added during encode
+		if (encodingDir === -1) textOut = textOut.trimEnd() ;
 
 		return textOut ;
 	}
