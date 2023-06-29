@@ -50,8 +50,7 @@ export default class PermCipher extends Cipher {
 	}
 
 	setSettingsFieldValue(fieldName, value) {
-		if (fieldName === 'int0') this.blockLen = parseInt(value) ;
-		else this.permutationCode = parseInt(value) ;
+		super.setSettingsFieldValue(fieldName, value) ;
 
 		const maxPermutationCode = this.getConfigurationDescription()[1].maxValue ;
 		this.permutationCode = Math.min(this.permutationCode, maxPermutationCode) ;
@@ -60,8 +59,8 @@ export default class PermCipher extends Cipher {
 
 	getConfigurationDescription() {
 		return [
-			{type: "int", label: 'BlockLen', minValue: 2, maxValue: 8},
-			{type: "int", label: 'Perm #', minValue: 1, maxValue: factorial(this.blockLen) - 1}
+			{id: "int0", name: "blockLen", type: "int", label: 'BlockLen', minValue: 2, maxValue: 8},
+			{id: "int1", name: "permutationCode", type: "int", label: 'Perm #', minValue: 1, maxValue: factorial(this.blockLen) - 1}
 		] ;
 	}
 

@@ -15,15 +15,10 @@ export default class CipherRollingCaesar extends CipherCaesar {
 		return CipherRollingCaesar.displayName ;
 	}
 
-	setSettingsFieldValue(fieldName, value) {
-		if (fieldName === 'int0') this.shift = parseInt(value) ;
-		else this.rollingShift = parseInt(value) ;
-	}
-
 	static getConfigurationDescription() {
 		return [
-			{type: "int", label: 'RShift', minValue: 1, maxValue: 25},
-			{type: "int", label: 'RRShift', minValue: 1, maxValue: 25}
+			{id: "int0", name: "shift", type: "int", label: 'RShift', minValue: 1, maxValue: 25},
+			{id: "int1", name: "rollingShift", type: "int", label: 'RRShift', minValue: 1, maxValue: 25}
 		] ;
 	}
 

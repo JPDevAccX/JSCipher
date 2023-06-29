@@ -14,12 +14,8 @@ export default class CipherCaesar extends AToZCipher {
 		return CipherCaesar.displayName ;
 	}
 
-	setSettingsFieldValue(fieldName, value) {
-		this.shift = parseInt(value) ;
-	}
-
 	static getConfigurationDescription() {
-		return [{type: "int", label: 'RShift', minValue: 1, maxValue: 25}] ;
+		return [{id: "int0", name: "shift", type: "int", label: 'RShift', minValue: 1, maxValue: 25}] ;
 	}
 
 	getConfigurationDescription() {
